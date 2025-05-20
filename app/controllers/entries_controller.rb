@@ -1,36 +1,18 @@
 class EntriesController < ApplicationController
 
-  def index
-    @entries = Entry.all
-    # render entry/index view
-  end
-  
-  def show
-    # find a Entry
-    @entries = Entry.find_by({ "id" => params["id"] })
-    # find Contacts for the Company
-    @place = Place.where({ "entry_id" => @place["id"] })
-    # render companies/show view with details about Company
-  end
-
   def new
-    # render entry/new view with new Entry form
+    @places = Place.find_by({ "id" => params["place_id"] })  
   end
 
   def create
-    # start with a new Entry
-    @entry = Entry.new
-
-    # assign user-entered form data to Post's columns
-    @entry["title"] = params["title"]
-    @entry["occurred_on"] = params["occurred_on"]
-    @entry["place_id"] = params["place_id"]
-
-    # save Post row
-    @entry.save
-
-    # redirect user
-    redirect_to "/posts"
+    @entries = Entry.new
+    @entries["title"] = params["title"]
+    @entries["description"] = params["description"]
+    @entries["occurred_on"] = params["occurred_on"]
+    @entries["place_id"] = params["place_id"]
+    @entries.save
+    # Used chatGPT to figure out the right way to configure the URL
+    redirect_to "/places/#{@entries["place_id"]}"
   end
   
 end

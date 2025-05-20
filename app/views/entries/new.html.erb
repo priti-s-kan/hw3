@@ -1,17 +1,23 @@
 <h1>New Post</h1>
 
-<form action="/posts" method="post">
+<form action="/entries" method="post">
   <p>
-    <label for="title">Title</label>
+    <label for="title">Title:</label>
     <input type="text" name="title">
   </p>
+
   <p>
-    <label for="description">Description</label>
+    <label for="description">Description:</label>
     <input type="text" name="description">
   </p>
+
   <p>
-    <label for="occured_on">Occured on</label>
-    <input type="text" name="occured_on">
+    <label for="occurred_on">Date Occurred:</label>
+    <input type="text" name="occurred_on">
   </p>
-  <button>Save</button>
+
+  <input type="hidden" name="place_id" value="<%= @places["id"] %>">
+
+  <button>Submit Entry</button>
+
 </form>
